@@ -1,19 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/greetingTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:textSize="36dp"
+        android:textStyle="bold"
+        android:textColor="@color/mainColor1"
+        android:text="Добро пожаловать \n в мир покупок мобильников!"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/captionRGPTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center"
+        android:textSize="26dp"
+        android:textStyle="bold"
+        android:textColor="@color/mainColor2"
+        android:text="Выбор салона связи."
         app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <RadioGroup
+        android:id="@+id/radioGroupRG"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:padding="16dp"
+        android:background="@color/rbcolor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/shopTel1RB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Московский салон связи"
+            android:checked="true"
+            android:onClick="radioButtonClick"/>
+
+        <RadioButton
+            android:id="@+id/shopTel2RB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Питерский салон связи"
+            android:checked="true"
+            android:onClick="radioButtonClick"/>
+
+    </RadioGroup>
+
+    <LinearLayout
+        android:id="@+id/buttonsLL"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/toShopBTN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_gravity="center"
+            android:textSize="18dp"
+            android:text="В магазин" />
+
+        <Button
+            android:id="@+id/exitBTN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_gravity="center"
+            android:textSize="18dp"
+            android:text="Покинуть" />
+
+    </LinearLayout>
+
+</LinearLayout>
