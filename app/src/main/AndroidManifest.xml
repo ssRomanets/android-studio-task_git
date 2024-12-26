@@ -13,6 +13,27 @@
         android:theme="@style/Theme.Task_Gt"
         tools:targetApi="31">
         <activity
+            android:name=".PetersburgTelRepairActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PetersburgTelShopActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PetersburgActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PetersbergActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PetersburgShopMobActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PetersburgMobileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MoscowTelShopActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

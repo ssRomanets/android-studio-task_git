@@ -1,7 +1,6 @@
 package com.example.task_gt
 
-interface Telephone {
+interface TelRepair {
     val image: Int
     val name: String
-    val price: Int
 }
