@@ -2,6 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -19,5 +20,41 @@
         android:textColor="@color/mainColor1"
         android:text="Продажа телефонов в Петербурге"
         android:gravity="center"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:hint="К итоговой странице"
+            android:inputType="text"
+            android:padding="18dp"
+            android:textColorHint="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/toResultPurchPageButton"
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginLeft="100dp"
+            android:backgroundTint="#2196F3"
+            android:clickable="true"
+            android:focusable="true"
+            app:srcCompat="@android:drawable/stat_notify_sync" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerPurchViewRV"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        tools:listitem="@layout/list_tel_shop_item" />
 
 </LinearLayout>

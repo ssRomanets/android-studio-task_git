@@ -2,7 +2,10 @@ package com.example.task_gt
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.task_gt.databinding.ActivityPetersburgTelRepairBinding
+
+var repairTelList = mutableListOf<TelRepair>()
 
 class PetersburgTelRepairActivity : AppCompatActivity() {
 
@@ -13,5 +16,14 @@ class PetersburgTelRepairActivity : AppCompatActivity() {
         binding = ActivityPetersburgTelRepairBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        if (repairTelList.size == 0)
+        {
+            repairTelList = getSPMutableListTellRepairs()
+        }
+
+        binding.recyclerRepairViewRV.layoutManager = LinearLayoutManager(this)
+        val adapter = RepairAdapter(repairTelList)
+        binding.recyclerRepairViewRV.adapter = adapter
+        binding.recyclerRepairViewRV.setHasFixedSize(true)
     }
 }
