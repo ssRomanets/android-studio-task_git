@@ -10,6 +10,12 @@ import androidx.recyclerview.widget.RecyclerView
 class PurchAdapter (private val telephones: MutableList<Telephone>):
     RecyclerView.Adapter<PurchAdapter.TelephoneViewHolder>(){
 
+    private var onTelephoneClickListener: OnTelephoneClickListener? = null
+
+    interface OnTelephoneClickListener {
+        fun onTelephoneClick(telephone: Telephone, position: Int)
+    }
+
     class TelephoneViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val imageTelViewIV: ImageView = itemView.findViewById(R.id.imageTelViewIV)
         val nameTelTV: TextView = itemView.findViewById(R.id.nameTelTV)
@@ -29,7 +35,16 @@ class PurchAdapter (private val telephones: MutableList<Telephone>):
         holder.imageTelViewIV.setImageResource(telephone.image)
         holder.nameTelTV.text = telephone.name
         holder.priceTelTV.text = telephone.price.toString()
-        holder.purchasedUnitsTV.text = telephone.purchasedUnits.toString()
+        holder.purchasedUnitsTV.text = "Куплено единиц " + telephone.purchasedUnits.toString()
+        holder.itemView.setOnClickListener{
+            if (onTelephoneClickListener != null) {
+                onTelephoneClickListener!!.onTelephoneClick(telephone, position)
+            }
+        }
+    }
+
+    fun setOnTelephoneClickListener(onTelephoneClickListener: OnTelephoneClickListener) {
+        this.onTelephoneClickListener = onTelephoneClickListener
     }
 
 }
