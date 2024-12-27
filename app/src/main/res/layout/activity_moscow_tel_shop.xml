@@ -21,6 +21,18 @@
         android:text="Продажа телефонов в Москве"
         android:gravity="center"/>
 
+    <TextView
+        android:id="@+id/generalInfoTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:hint="Продано телефонов на.."
+        android:gravity="center"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

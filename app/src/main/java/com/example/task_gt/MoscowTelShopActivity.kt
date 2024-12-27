@@ -2,6 +2,7 @@ package com.example.task_gt
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,6 +15,7 @@ class MoscowTelShopActivity : AppCompatActivity() {
     var purchTelList = mutableListOf<Telephone>()
     var maskTelephones = mutableListOf<Int>()
     var quantPurch = 0; //количество покупок
+    var generalSumMoney = 0; //вырочка
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +24,17 @@ class MoscowTelShopActivity : AppCompatActivity() {
 
         if (purchTelList.size == 0) purchTelList = MoscowTelShopModal.moscowTelephones
         for ( i in purchTelList.indices)  maskTelephones.add(0)
+
+        //считаем первоначальную выручку
+        for ( i in purchTelList.indices)
+            if (purchTelList.get(i).purchasedUnits != 0)
+                generalSumMoney += purchTelList.get(i).purchasedUnits*purchTelList.get(i).price
+
+        if (generalSumMoney == 0) binding.generalInfoTV.visibility =  View.INVISIBLE
+        else {
+            binding.generalInfoTV.visibility = View.VISIBLE
+            binding.generalInfoTV.text = "Телефонов продано на "+generalSumMoney.toString()+"р."
+        }
 
         binding.recyclerPurchViewRV.layoutManager = LinearLayoutManager(this)
         adapter = PurchAdapter(purchTelList)
