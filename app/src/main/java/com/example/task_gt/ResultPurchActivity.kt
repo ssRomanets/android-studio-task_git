@@ -12,6 +12,5 @@ class ResultPurchActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityResultPurchBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
     }
 }

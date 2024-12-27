@@ -5,4 +5,5 @@
     <color name="rbcolor">#dbeceb</color>
     <color name="mainColor1">#dd0000</color>
     <color name="mainColor2">#00dd00</color>
+    <color name="textBackground">#AAAAAA</color>
 </resources>

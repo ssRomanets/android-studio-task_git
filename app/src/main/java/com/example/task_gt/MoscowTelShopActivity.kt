@@ -15,10 +15,8 @@ class MoscowTelShopActivity : AppCompatActivity() {
         binding = ActivityMoscowTelShopBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        if (purchTelList.size == 0)
-        {
-            purchTelList = getMMutableListTelephones()
-        }
+        if (purchTelList.size == 0) purchTelList = MoscowTelShopModal.moscowTelephones
+
     }
 
     override fun onResume() {

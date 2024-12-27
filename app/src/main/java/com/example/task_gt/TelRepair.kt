@@ -1,7 +1,9 @@
 package com.example.task_gt
 
-interface TelRepair {
-    val image: Int
-    val name: String
-    val repairedUnits: Int
-}
+import java.io.Serializable
+
+class TelRepair (
+    val image: Int,
+    val name: String,
+    var repairedUnits: Int
+): Serializable

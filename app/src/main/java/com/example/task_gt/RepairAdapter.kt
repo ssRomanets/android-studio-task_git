@@ -10,6 +10,12 @@ import androidx.recyclerview.widget.RecyclerView
 class RepairAdapter (private val telRepairs: MutableList<TelRepair>):
     RecyclerView.Adapter<RepairAdapter.TelRepairViewHolder>(){
 
+    private var onTelRepairClickListener: OnTelRepairClickListener? = null
+
+    interface OnTelRepairClickListener {
+        fun onTelRepairClick(telRepair: TelRepair, position: Int)
+    }
+
     class TelRepairViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val imageTelViewIV: ImageView = itemView.findViewById(R.id.imageTelViewIV)
         val nameTelTV: TextView = itemView.findViewById(R.id.nameTelTV)
@@ -27,7 +33,16 @@ class RepairAdapter (private val telRepairs: MutableList<TelRepair>):
         val telRepair = telRepairs[position]
         holder.imageTelViewIV.setImageResource(telRepair.image)
         holder.nameTelTV.text = telRepair.name
-        holder.repairedUnitsTV.text = telRepair.repairedUnits.toString()
+        holder.repairedUnitsTV.text = "отремонтированных телефонов - " + telRepair.repairedUnits.toString()
+
+        holder.imageTelViewIV.setOnClickListener{
+            if (onTelRepairClickListener != null) {
+                onTelRepairClickListener!!.onTelRepairClick(telRepair, position)
+            }
+        }
     }
 
+    fun setOnTelRepairClickListener(onTelRepairClickListener: OnTelRepairClickListener) {
+        this.onTelRepairClickListener = onTelRepairClickListener
+    }
 }
