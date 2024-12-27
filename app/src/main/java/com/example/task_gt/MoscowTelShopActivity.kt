@@ -50,7 +50,6 @@ class MoscowTelShopActivity : AppCompatActivity() {
                     }
                 }
 
-
                 val intent = Intent(this@MoscowTelShopActivity, ResultPurchActivity::class.java)
                 intent.putExtra("outputData", outputData)
                 startActivity(intent)

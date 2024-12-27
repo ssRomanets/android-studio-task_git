@@ -1,5 +1,6 @@
 package com.example.task_gt
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -9,7 +10,10 @@ import com.example.task_gt.databinding.ActivityPetersburgTelShopBinding
 class PetersburgTelShopActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityPetersburgTelShopBinding
+    private lateinit var adapter: PurchAdapter
     var purchTelList = mutableListOf<Telephone>()
+    var maskTelephones = mutableListOf<Int>()
+    var quantPurch = 0; //количество покупок
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,15 +21,64 @@ class PetersburgTelShopActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         if (purchTelList.size == 0) purchTelList = PetersburgTelShopModal.peterTelephones
-    }
+        for ( i in purchTelList.indices)  maskTelephones.add(0)
 
-    override fun onResume() {
-        super.onResume()
         binding.recyclerPurchViewRV.layoutManager = LinearLayoutManager(this)
-        val adapter = PurchAdapter(purchTelList)
-
+        adapter = PurchAdapter(purchTelList)
         binding.recyclerPurchViewRV.adapter = adapter
         binding.recyclerPurchViewRV.setHasFixedSize(true)
+
+        binding.toResultPurchPageButton.setOnClickListener{
+            if (quantPurch > 0) {
+                binding.toResultPurchPageButton.animate().apply {
+                    rotationBy(360f)
+                    duration = 1000
+                }.start()
+
+                var outputData: String  = ""
+                for (i in maskTelephones.indices)
+                {
+                    if (maskTelephones.get(i) > 0)
+                    {
+                        var telephone = purchTelList[i]
+                        telephone.purchasedUnits += maskTelephones[i]
+                        purchTelList.set(i, telephone)
+                        outputData = outputData +
+                                maskTelephones[i] + " " +
+                                purchTelList[i].name + " на " +
+                                (maskTelephones[i]*purchTelList[i].price).toString()+"р \n"
+                    }
+                }
+
+                val intent = Intent(this@PetersburgTelShopActivity, ResultPurchActivity::class.java)
+                intent.putExtra("outputData", outputData)
+                startActivity(intent)
+            }
+        }
+    }
+    
+    override fun onResume() {
+        super.onResume()
+
+        val dialogBuilder = AlertDialog.Builder(this)
+
+        adapter.setOnTelephoneClickListener( object :
+            PurchAdapter.OnTelephoneClickListener {
+            override fun onTelephoneClick(product: Telephone, position: Int) {
+                dialogBuilder.setTitle("Подтверждение покупки")
+                dialogBuilder.setPositiveButton("В корзину"){_, _ ->
+                    maskTelephones.set(position, maskTelephones.get(position)+1)
+                    quantPurch++;
+                }
+                dialogBuilder.setNegativeButton("Отмена"){dialog, which ->
+                    if (maskTelephones.get(position) > 0) {
+                        maskTelephones.set(position, maskTelephones.get(position)-1)
+                        quantPurch--;
+                    }
+                }
+                dialogBuilder.create().show()
+            }
+        })
     }
 }
 
