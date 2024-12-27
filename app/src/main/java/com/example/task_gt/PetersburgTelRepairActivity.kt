@@ -20,7 +20,10 @@ class PetersburgTelRepairActivity : AppCompatActivity() {
         {
             repairTelList = getSPMutableListTellRepairs()
         }
+    }
 
+    override fun onResume() {
+        super.onResume()
         binding.recyclerRepairViewRV.layoutManager = LinearLayoutManager(this)
         val adapter = RepairAdapter(repairTelList)
         binding.recyclerRepairViewRV.adapter = adapter
