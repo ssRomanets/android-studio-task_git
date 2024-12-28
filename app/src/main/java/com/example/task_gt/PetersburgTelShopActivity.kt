@@ -26,9 +26,7 @@ class PetersburgTelShopActivity : AppCompatActivity() {
         for ( i in purchTelList.indices)  maskTelephones.add(0)
 
         //считаем первоначальную выручку
-        for ( i in purchTelList.indices)
-            if (purchTelList.get(i).purchasedUnits != 0)
-                generalSumMoney += purchTelList.get(i).purchasedUnits*purchTelList.get(i).price
+        generalSumMoney = purchTelList.fold(0, { generalSumMoney, item -> generalSumMoney + item.price* item.purchasedUnits})
 
         if (generalSumMoney == 0) binding.generalInfoTV.visibility =  View.INVISIBLE
         else {
